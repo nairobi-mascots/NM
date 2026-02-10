@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nairobi Mascots | Professional Mascot Hire</title>
+
+<style>
+:root{
+  --primary:#0f7c90;
+  --secondary:#ffb703;
+  --dark:#1f2937;
+  --light:#f9fafb;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+body{background:var(--light);color:var(--dark);line-height:1.7}
+a{text-decoration:none}
+
+header{
+  background:var(--primary);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+nav{
+  max-width:1200px;
+  margin:auto;
+  padding:1rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:1rem;
+}
+
+nav a{color:white;font-weight:bold}
+nav a:hover{color:var(--secondary)}
+
+.hero{
+  padding:6rem 2rem;
+  text-align:center;
+  color:white;
+  background:
+    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url("images/bruno-hero.png") center/cover no-repeat;
+}
+
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:4rem 2rem;
+}
+
+h2{text-align:center;color:var(--primary);margin-bottom:2rem}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1.5rem;
+}
+
+.card{
+  background:white;
+  padding:1.5rem;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:1rem;
+  background:var(--secondary);
+  color:black;
+  padding:.7rem 1.4rem;
+  border-radius:6px;
+  font-weight:bold;
+  cursor:pointer;
+  border:none;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  z-index:2000;
+}
+
+.modal-content{
+  background:white;
+  max-width:800px;
+  margin:5% auto;
+  padding:2rem;
+  border-radius:12px;
+  max-height:85vh;
+  overflow-y:auto;
+}
+
+.close{
+  float:right;
+  font-size:1.4rem;
+  cursor:pointer;
+}
+
+footer{
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:2rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<h1>Nairobi Mascots</h1>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#mascots">Mascots</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<section id="home" class="hero">
+<h2>Bringing Characters to Life</h2>
+<p>Professional mascot entertainment for Nairobi and beyond.</p>
+<a href="#contact" class="btn">Book Now</a>
+</section>
+
+<section id="mascots">
+<h2>Our Mascots</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="images/raptor-riley.png">
+<h3>Raptor Riley</h3>
+<p>Energetic dinosaur mascot.</p>
+<button class="btn" onclick="openModal('raptor')">Read More</button>
+</div>
+
+<div class="card">
+<img src="images/percy-pelican.png">
+<h3>Percy the Pelican</h3>
+<p>Fun coastal character.</p>
+<button class="btn" onclick="openModal('percy')">Read More</button>
+</div>
+
+<div class="card">
+<img src="images/watoto-fun-friend.png">
+<h3>Watoto Fun Friend</h3>
+<p>Educational entertainer.</p>
+<button class="btn" onclick="openModal('watoto')">Read More</button>
+</div>
+
+<div class="card">
+<img src="images/bruno-the-bear.png">
+<h3>Bruno the Bear</h3>
+<p>Warm and lovable.</p>
+<button class="btn" onclick="openModal('bruno')">Read More</button>
+</div>
+
+<div class="card">
+<img src="images/boris.png">
+<h3>Boris</h3>
+<p>Bold mascot personality.</p>
+<button class="btn" onclick="openModal('boris')">Read More</button>
+</div>
+
+<div class="card">
+<img src="images/bella.png">
+<h3>Bella</h3>
+<p>Charming entertainer.</p>
+<button class="btn" onclick="openModal('bella')">Read More</button>
+</div>
+
+<div class="card">
+<img src="images/onyx.png">
+<h3>Onyx</h3>
+<p>Modern stylish mascot.</p>
+<button class="btn" onclick="openModal('onyx')">Read More</button>
+</div>
+
+</div>
+</section>
+
+<!-- ONE MODAL TEMPLATE (REUSED) -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">✖</span>
+
+<h2 id="modalTitle"></h2>
+
+<h3>Charges</h3>
+<ul>
+<li>Full Day (9AM–5:50PM): Ksh 9,500</li>
+<li>Half Day: Ksh 6,500</li>
+<li>1 Hour 30 Minutes: Ksh 4,500</li>
+</ul>
+
+<p><em>Outside Nairobi logistics catered by client.</em></p>
+
+<a class="btn" href="https://wa.me/254740967960" target="_blank">
+Book via WhatsApp
+</a>
+</div>
+</div>
+
+<section id="services">
+<h2>Our Services</h2>
+
+<p style="max-width:900px;margin:auto;text-align:center;margin-bottom:3rem;">
+At Nairobi Mascots, we specialize in delivering unforgettable entertainment
+experiences through vibrant mascots and engaging performances. Our services
+are designed to bring joy, excitement, and lasting memories to every event,
+no matter the occasion.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Birthday Parties</h3>
+<p>
+We turn birthday celebrations into magical experiences. Our mascots interact
+with guests through fun games, energetic dancing, and playful activities that
+keep children entertained from start to finish. Every birthday party becomes
+a joyful and colorful celebration filled with laughter and excitement.
+</p>
+</div>
+
+<div class="card">
+<h3>Surprise Deliveries & Visits</h3>
+<p>
+We bring excitement straight to your doorstep. Whether it’s a surprise gift,
+a special message, or an unexpected visit, our mascots create memorable
+moments through lively interactions, cheerful performances, and joyful energy
+that leaves a lasting impression.
+</p>
+</div>
+
+<div class="card">
+<h3>School Openings & Closings</h3>
+<p>
+Our mascots add fun and excitement to school events, helping celebrate
+openings, closings, and special school days. Through interactive performances
+and student engagement, we create a lively atmosphere that students and staff
+will remember long after the event ends.
+</p>
+</div>
+
+<div class="card">
+<h3>Hospital Visits</h3>
+<p>
+We believe in spreading smiles where they matter most. During hospital visits,
+our mascots bring warmth, laughter, and positive energy to patients, families,
+and healthcare workers, helping brighten even the toughest days.
+</p>
+</div>
+
+<div class="card">
+<h3>Gender Reveals</h3>
+<p>
+We make gender reveals unforgettable by adding excitement, suspense, and joy
+to the big moment. Our mascots help transform the announcement into a fun,
+celebratory experience that everyone will cherish.
+</p>
+</div>
+
+<div class="card">
+<h3>Brand Activations & Corporate Events</h3>
+<p>
+For brand activations, corporate family days, and promotional events, our
+mascots attract attention and engage audiences effectively. We help brands
+stand out by creating interactive experiences that leave a strong and
+positive impression on customers.
+</p>
+</div>
+
+<div class="card">
+<h3>Product Launches & Promotions</h3>
+<p>
+We infuse energy and excitement into product launches and promotional
+campaigns. Our mascots draw crowds, create buzz, and encourage interaction,
+making your product or service memorable and engaging.
+</p>
+</div>
+
+</div>
+</section>
+
+<section id="about">
+<h2>About Nairobi Mascots</h2>
+
+<p style="max-width:900px;margin:auto;margin-bottom:1.5rem;">
+Nairobi Mascots is a professional mascot entertainment company based in
+Imara Daima, Nairobi. We are dedicated to bringing characters to life through
+high-quality mascot costumes, trained performers, and engaging interactive
+experiences that delight audiences of all ages.
+</p>
+
+<p style="max-width:900px;margin:auto;margin-bottom:1.5rem;">
+Our mission is to create joyful moments and unforgettable memories at every
+event we attend. From birthday parties and school functions to corporate
+events, hospital visits, and brand activations, we approach every performance
+with creativity, energy, and professionalism.
+</p>
+
+<p style="max-width:900px;margin:auto;margin-bottom:1.5rem;">
+At Nairobi Mascots, we understand that every event is unique. That’s why we
+work closely with our clients to ensure each appearance is tailored to match
+the theme, audience, and purpose of the occasion. Our mascots are friendly,
+engaging, and family-oriented, making them suitable for both children and
+adults.
+</p>
+
+<p style="max-width:900px;margin:auto;margin-bottom:1.5rem;">
+We take pride in our attention to detail, punctuality, and commitment to
+excellence. Whether it’s creating laughter at a child’s birthday, lifting
+spirits during a hospital visit, or drawing crowds at a brand activation, we
+deliver performances that leave a lasting positive impact.
+</p>
+
+<p style="max-width:900px;margin:auto;">
+If you’re looking for reliable, professional, and entertaining mascot
+services in Nairobi and beyond, Nairobi Mascots is your trusted partner for
+bringing fun, color, and excitement to your event.
+</p>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>📍 Imara Daima, Nairobi<br>📞 WhatsApp: 0740967960</p>
+</section>
+
+<footer>
+<p>© Nairobi Mascots</p>
+</footer>
+
+<script>
+function openModal(name){
+  document.getElementById("modal").style.display="block";
+  document.getElementById("modalTitle").innerText=name.toUpperCase();
+}
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+</script>
+
+</body>
+</html>
